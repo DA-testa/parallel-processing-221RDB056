@@ -3,10 +3,17 @@
 def parallel_processing(n, m, data):
     output = []
     threads = []
+    current_job = 0
+    second = 0
     for i in range(n):
-        threads.append(i)
-    
-    print(threads)
+        threads.append((i,0))
+    for x in range(m):
+        for i in range(n):
+            if threads[i][1] == 0:
+                threads[i] = (threads[i][0], data[x])
+                output.append((threads[i][0], second))
+                current_job += 1
+        second += 1
     return output
 
 def main():
@@ -21,15 +28,13 @@ def main():
     jobs = input().split()
     for i in range(m): 
         data.append(int(jobs[i]))
-    print(data)
     assert len(data) == m, "Incorrect job count"
 
     # Calls function which calculates parallel processing
     result = parallel_processing(n,m,data)
     
-    # TODO: print out the results, each pair in it's own line
-
-
+    for job in result:
+        print(job[0], job[1])
 
 if __name__ == "__main__":
     main()
