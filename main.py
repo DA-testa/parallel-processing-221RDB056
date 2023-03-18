@@ -2,9 +2,11 @@
 
 def parallel_processing(n, m, data):
     output = []
-    # TODO: write the function for simulating parallel tasks, 
-    # create the output pairs
-
+    threads = []
+    for i in range(n):
+        threads.append(i)
+    
+    print(threads)
     return output
 
 def main():
@@ -15,10 +17,14 @@ def main():
     m = int(thread_job_count[1])
 
     # data - contains m integers t(i) - the times in seconds it takes any thread to process i-th job
-    data = input().split()
+    data = []
+    jobs = input().split()
+    for i in range(m): 
+        data.append(int(jobs[i]))
+    print(data)
     assert len(data) == m, "Incorrect job count"
 
-    # TODO: create the function
+    # Calls function which calculates parallel processing
     result = parallel_processing(n,m,data)
     
     # TODO: print out the results, each pair in it's own line
