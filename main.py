@@ -8,17 +8,15 @@ def parallel_processing(n, m, data):
     return output
 
 def main():
-    # TODO: create input from keyboard
-    # input consists of two lines
-    # first line - n and m
-    # n - thread count 
-    # m - job count
-    n = 0
-    m = 0
+    # n - contains thread count
+    # m - contains job count
+    thread_job_count = input().split()
+    n = int(thread_job_count[0])
+    m = int(thread_job_count[1])
 
-    # second line - data 
     # data - contains m integers t(i) - the times in seconds it takes any thread to process i-th job
-    data = []
+    data = input().split()
+    assert len(data) == m, "Incorrect job count"
 
     # TODO: create the function
     result = parallel_processing(n,m,data)
