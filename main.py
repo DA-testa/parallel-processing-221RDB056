@@ -5,9 +5,10 @@ def parallel_processing(n, m, data):
     threads = []
     current_job = 0
     second = 0
+    end_of_jobs = False
     for i in range(n):
         threads.append((i,0))
-    while (current_job < m):
+    while True:
         for i in range(n):
             if threads[i][1] == 0:
                 threads[i] = (threads[i][0], data[current_job])
@@ -15,7 +16,12 @@ def parallel_processing(n, m, data):
                 current_job += 1
             if threads[i][1] > 0:
                 threads[i] = (threads[i][0], threads[i][1]-1)
+            if current_job == m:
+                end_of_jobs = True
+                break
         second += 1
+        if end_of_jobs:
+            break
     return output
 
 def main():
